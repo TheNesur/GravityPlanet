@@ -10,6 +10,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(GravityPlanet src/main.cpp
         src/physic/particule/Particules.cpp
-        src/physic/particule/Particules.h)
+        src/physic/particule/Particules.h
+        src/physic/particule/Point.cpp
+        src/physic/particule/Point.h
+        src/physic/particule/Point.h
+)
 
 target_link_libraries(GravityPlanet sfml-system sfml-window sfml-graphics sfml-audio)
