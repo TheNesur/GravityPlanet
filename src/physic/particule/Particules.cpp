@@ -12,7 +12,7 @@ Particules::Particules(float pos_x, float pos_y, float strenght) {
 
     this->circle_shape.setPosition(this->pos);
     this->circle_shape.setFillColor(sf::Color::White);
-    circle_shape.setRadius(4);
+    circle_shape.setRadius(8);
 }
 
 void Particules::render(sf::RenderWindow& renderWindow) {

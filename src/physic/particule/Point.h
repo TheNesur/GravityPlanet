@@ -17,7 +17,7 @@ private:
     sf::CircleShape circle_shape;
 
 public:
-    Point(float pos_x, float pos_y, float vel_x, float vel_y);
+    Point(float pos_x, float pos_y, float vel_x, float vel_y, std::vector<int> colors, float radius = 8);
 
     void render(sf::RenderWindow& win);
     void update_physics(Particules& particules);

@@ -5,7 +5,7 @@
 #include "Point.h"
 #include "math.h"
 
-Point::Point(float pos_x, float pos_y, float vel_x, float vel_y) {
+Point::Point(float pos_x, float pos_y, float vel_x, float vel_y, std::vector<int> colors, float radius) {
     pos.x = pos_x;
     pos.y = pos_y;
 
@@ -13,8 +13,8 @@ Point::Point(float pos_x, float pos_y, float vel_x, float vel_y) {
     vel.y = vel_y;
 
     circle_shape.setPosition(pos);
-    circle_shape.setFillColor(sf::Color::White);
-    circle_shape.setRadius(8);
+    circle_shape.setFillColor(sf::Color(colors[0], colors[1], colors[2]));
+    circle_shape.setRadius(radius);
 }
 
 void Point::render(sf::RenderWindow &render_window) {
