@@ -9,8 +9,8 @@ FETCHCONTENT_MAKEAVAILABLE(SFML)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(GravityPlanet src/main.cpp
-        src/physic/particule/Particules.cpp
-        src/physic/particule/Particules.h
+        src/physic/particule/Planet.cpp
+        src/physic/particule/Planet.h
         src/physic/particule/Point.cpp
         src/physic/particule/Point.h
         src/physic/particule/Point.h

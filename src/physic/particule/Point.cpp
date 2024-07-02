@@ -22,7 +22,7 @@ void Point::render(sf::RenderWindow &render_window) {
     render_window.draw(circle_shape);
 }
 
-void Point::update_physics(Particules &particules) {
+void Point::update_physics(Planet &particules) {
     float distance_x = particules.getPos().x - pos.x;
     float distance_y = particules.getPos().y - pos.y;
 

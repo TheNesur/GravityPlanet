@@ -2,10 +2,10 @@
 // Created by Max on 26/06/2024.
 //
 
-#include "Particules.h"
+#include "Planet.h"
 
 
-Particules::Particules(float pos_x, float pos_y, float strenght) {
+Planet::Planet(float pos_x, float pos_y, float strenght) {
     this->pos.x = pos_x;
     this->pos.y = pos_y;
     this->strenght = strenght;
@@ -15,15 +15,15 @@ Particules::Particules(float pos_x, float pos_y, float strenght) {
     circle_shape.setRadius(8);
 }
 
-void Particules::render(sf::RenderWindow& renderWindow) {
+void Planet::render(sf::RenderWindow& renderWindow) {
     renderWindow.draw(this->circle_shape);
 }
 
 
-sf::Vector2f Particules::getPos() {
+sf::Vector2f Planet::getPos() {
     return this->pos;
 }
 
-float Particules::getStrenght() {
+float Planet::getStrenght() {
     return this->strenght;
 }
