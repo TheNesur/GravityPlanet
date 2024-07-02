@@ -23,7 +23,7 @@ int main()
     std::vector<Point*> points;
 
     for (int i = 0; i < MAXPoint; ++i) {
-        points.push_back(new Point(width/2-(rand()%200+1), height/2+(rand()%200+1),4, 0, {rand()%255,rand()%255,rand()%255}, rand()%12+0.1));
+        points.push_back(new Point(width/2-(rand()%200+1), height/2+(rand()%200+1),4, 0, {rand()%180,rand()%180,rand()%180}, rand()%12+0.1));
     // std::cout << rand()%12+0.1 << '\n';
     }
 
