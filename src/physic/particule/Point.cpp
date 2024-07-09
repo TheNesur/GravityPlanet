@@ -5,26 +5,26 @@
 #include "Point.h"
 #include "math.h"
 
-Point::Point(float pos_x, float pos_y, float vel_x, float vel_y, std::vector<int> colors, float radius) {
-    pos.x = pos_x;
-    pos.y = pos_y;
+Point::Point(sf::Vector2f position, sf::Vector2f velocity, sf::Color color, float radius) {
+    position.x = position.x;
+    position.y = position.y;
 
-    vel.x = vel_x;
-    vel.y = vel_y;
+    velocity.x = velocity.x;
+    velocity.y = velocity.y;
 
-    circle_shape.setPosition(pos);
-    circle_shape.setFillColor(sf::Color(colors[0], colors[1], colors[2]));
-    circle_shape.setRadius(radius);
+    this->_circle_shape.setPosition(position);
+    this->_circle_shape.setFillColor(color);
+    this->_circle_shape.setRadius(radius);
 }
 
 void Point::render(sf::RenderWindow &render_window) {
-    circle_shape.setPosition(pos);
-    render_window.draw(circle_shape);
+    this->_circle_shape.setPosition(this->_position);
+    render_window.draw(this->_circle_shape);
 }
 
 void Point::update_physics(Planet &particules) {
-    float distance_x = particules.getPos().x - pos.x;
-    float distance_y = particules.getPos().y - pos.y;
+    float distance_x = particules.getPos().x - this->_position.x;
+    float distance_y = particules.getPos().y - this->_position.y;
 
     float distance = sqrt(distance_x * distance_x + distance_y * distance_y);
 
@@ -35,12 +35,37 @@ void Point::update_physics(Planet &particules) {
 
     float inverse_square_dropoff = inverse_distance * inverse_distance;
 
-    float acceleration_x = normalized_x * particules.getStrenght() * inverse_square_dropoff;
-    float acceleration_y = normalized_y * particules.getStrenght() * inverse_square_dropoff;
+    float acceleration_x = normalized_x * particules.getStrength() * inverse_square_dropoff;
+    float acceleration_y = normalized_y * particules.getStrength() * inverse_square_dropoff;
 
-    vel.x += acceleration_x;
-    vel.y += acceleration_y;
+    this->_velocity.x += acceleration_x;
+    this->_velocity.y += acceleration_y;
 
-    pos.x += vel.x;
-    pos.y += vel.y;
+    this->_position.x += this->_velocity.x;
+    this->_position.y += this->_velocity.y;
 }
+
+const sf::Vector2f &Point::getPosition() const {
+    return this->_position;
+}
+
+void Point::setPosition(const sf::Vector2f &position) {
+    Point::_position = position;
+}
+
+const sf::Vector2f &Point::getVelocity() const {
+    return this->_velocity;
+}
+
+void Point::setVelocity(const sf::Vector2f &velocity) {
+    Point::_velocity = velocity;
+}
+
+const sf::CircleShape &Point::getCircleShape() const {
+    return this->_circle_shape;
+}
+
+void Point::setCircleShape(const sf::CircleShape &circleShape) {
+    this->_circle_shape = circleShape;
+}
+

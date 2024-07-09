@@ -3,14 +3,15 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <array>
 
 
 #include "physic/particule/Point.h"
 
 int main()
 {
-    const int width = 1920;
-    const int height = 1080;
+    const float width = 1920;
+    const float height = 1080;
     const int MAXPoint = 10000;
     std::srand(std::time(nullptr)); // use current time as seed for random generator
 
@@ -20,17 +21,20 @@ int main()
 
     Planet source(width/2, height/2, 2000);
 
-    std::vector<Point*> points;
+//    std::vector<Point*> points;
+
+    std::array<Point, MAXPoint> *points;
 
     for (int i = 0; i < MAXPoint; ++i) {
         points.push_back(new Point(width/2-(rand()%200+1), height/2+(rand()%200+1),4, 0, {rand()%180,rand()%180,rand()%180}, rand()%12+0.1));
+        points[i]
     // std::cout << rand()%12+0.1 << '\n';
     }
 
     //Point particle(width/2-100, height/2+100, 4, 0);
     while (window.isOpen()) {
 
-        sf::Event event;
+        sf::Event event{};
         while (window.pollEvent(event)) {
             switch(event.type) {
                 case sf::Event::Closed:
@@ -41,11 +45,13 @@ int main()
                         case sf::Keyboard::Escape:
                             window.close();
                             break;
+                        default:
+                            break;
                     }
                     break;
+                default:
+                    break;
             }
-            // if (event.type == sf::Event::Closed) window.close();
-            // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
         }
 
 

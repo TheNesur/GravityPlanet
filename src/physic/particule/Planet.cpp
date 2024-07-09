@@ -5,10 +5,10 @@
 #include "Planet.h"
 
 
-Planet::Planet(float pos_x, float pos_y, float strenght) {
+Planet::Planet(float pos_x, float pos_y, float strength) {
     this->pos.x = pos_x;
     this->pos.y = pos_y;
-    this->strenght = strenght;
+    this->strength = strength;
 
     this->circle_shape.setPosition(this->pos);
     this->circle_shape.setFillColor(sf::Color::White);
@@ -24,6 +24,6 @@ sf::Vector2f Planet::getPos() {
     return this->pos;
 }
 
-float Planet::getStrenght() {
-    return this->strenght;
+float Planet::getStrength() {
+    return this->strength;
 }

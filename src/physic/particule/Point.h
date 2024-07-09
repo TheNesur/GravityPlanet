@@ -12,15 +12,29 @@
 
 class Point {
 private:
-    sf::Vector2f pos;
-    sf::Vector2f vel;
-    sf::CircleShape circle_shape;
+    sf::Vector2f _position;
+    sf::Vector2f _velocity;
+    sf::CircleShape _circle_shape;
 
 public:
-    Point(float pos_x, float pos_y, float vel_x, float vel_y, std::vector<int> colors, float radius = 8);
+    Point(sf::Vector2f position, sf::Vector2f velocity, sf::Color color, float radius = 8);
 
     void render(sf::RenderWindow& win);
     void update_physics(Planet& particules);
+
+    const sf::Vector2f &getPosition() const;
+
+    void setPosition(const sf::Vector2f &position);
+
+    const sf::Vector2f &getVelocity() const;
+
+    void setVelocity(const sf::Vector2f &velocity);
+
+    const sf::CircleShape &getCircleShape() const;
+
+    void setCircleShape(const sf::CircleShape &circleShape);
+
+
 };
 
 

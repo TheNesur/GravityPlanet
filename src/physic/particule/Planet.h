@@ -12,16 +12,16 @@
 class Planet {
 private:
     sf::Vector2f pos;
-    float strenght;
+    float strength;
     sf::CircleShape circle_shape;
 
 public:
-    Planet(float pos_x, float pos_y, float strenght);
+    Planet(float pos_x, float pos_y, float strength);
 
     void render(sf::RenderWindow& renderWindow);
 
     sf::Vector2f getPos();
-    float getStrenght();
+    float getStrength();
 
 };
 
