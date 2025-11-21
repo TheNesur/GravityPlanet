@@ -25,7 +25,7 @@ void Point::update_physics(Planet &particules) {
 
     float distance = sqrt(distance_x * distance_x + distance_y * distance_y);
 
-    float inverse_distance = 1.f / distance;
+    float inverse_distance = (1.f / distance); // std::max(distance, 5.0f)
 
     float normalized_x = inverse_distance * distance_x;
     float normalized_y = inverse_distance * distance_y;
