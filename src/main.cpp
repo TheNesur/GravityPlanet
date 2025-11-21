@@ -51,7 +51,7 @@ int main()
                     break;
                 case sf::Event::MouseButtonPressed:
                     if (event.mouseButton.button == sf::Mouse::Left) {
-                        // Récupérer la position de la souris au moment du clic
+                        // Get mouse position at the moment of click
                         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                         std::cout << "Mouse clicked at position: (" << mousePos.x << ", " << mousePos.y << ")" << std::endl;
                     }
