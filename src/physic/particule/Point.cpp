@@ -6,13 +6,10 @@
 #include "math.h"
 
 Point::Point(sf::Vector2f position, sf::Vector2f velocity, sf::Color color, float radius) {
-    position.x = position.x;
-    position.y = position.y;
+    this->_position = position;
+    this->_velocity = velocity;
 
-    velocity.x = velocity.x;
-    velocity.y = velocity.y;
-
-    this->_circle_shape.setPosition(position);
+    this->_circle_shape.setPosition(this->_position);
     this->_circle_shape.setFillColor(color);
     this->_circle_shape.setRadius(radius);
 }

@@ -1,0 +1,3 @@
+C:/Users/Max/Documents/GitHub/GravityPlanet/build/_deps/sfml-subbuild/CMakeFiles/sfml-populate.dir
+C:/Users/Max/Documents/GitHub/GravityPlanet/build/_deps/sfml-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/Max/Documents/GitHub/GravityPlanet/build/_deps/sfml-subbuild/CMakeFiles/rebuild_cache.dir

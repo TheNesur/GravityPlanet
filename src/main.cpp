@@ -3,32 +3,45 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include <array>
+#include <vector>
 
 
 #include "physic/particule/Point.h"
 
 int main()
 {
-    const float width = 1920;
-    const float height = 1080;
-    const int MAXPoint = 10000;
+    // Use 80% of the desktop resolution for the window size and center it
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+    unsigned int winW = static_cast<unsigned int>(desktop.width * 0.8f);
+    unsigned int winH = static_cast<unsigned int>(desktop.height * 0.8f);
+    const float width = static_cast<float>(winW);
+    const float height = static_cast<float>(winH);
+    const int MAXPoint = 1000;
     std::srand(std::time(nullptr)); // use current time as seed for random generator
 
 
-    sf::RenderWindow window(sf::VideoMode(width, height), "PlanetGravity");
+    sf::RenderWindow window(sf::VideoMode(winW, winH), "PlanetGravity");
     window.setFramerateLimit(60);
 
-    Planet source(width/2, height/2, 2000);
+    // Center the window on the desktop
+    window.setPosition(sf::Vector2i((desktop.width - static_cast<int>(winW)) / 2,
+                                    (desktop.height - static_cast<int>(winH)) / 2));
 
-//    std::vector<Point*> points;
+    // Planet source(width/10, height/10, 2000);
 
-    std::array<Point, MAXPoint> *points;
+    std::vector<Point*> points;
+    std::vector<Planet*> planets;
+    points.reserve(MAXPoint);
 
     for (int i = 0; i < MAXPoint; ++i) {
-        points.push_back(new Point(width/2-(rand()%200+1), height/2+(rand()%200+1),4, 0, {rand()%180,rand()%180,rand()%180}, rand()%12+0.1));
-        points[i]
-    // std::cout << rand()%12+0.1 << '\n';
+        float px = /*width/2.0f -*/ static_cast<float>(rand()%2000 + 1);
+        float py =/* height/2.0f +*/ static_cast<float>(rand()%2000 + 1);
+        sf::Vector2f position(px, py);
+        sf::Vector2f velocity(0.f, 0.f);
+        sf::Color color(static_cast<sf::Uint8>(rand()%180), static_cast<sf::Uint8>(rand()%180), static_cast<sf::Uint8>(rand()%180));
+        float radius = static_cast<float>(rand()%12) + 0.1f;
+        points.push_back(new Point(position, velocity, color, radius));
+        std::cout << "Point créer [" << px << ";" << py << "]\n";
     }
 
     //Point particle(width/2-100, height/2+100, 4, 0);
@@ -49,6 +62,24 @@ int main()
                             break;
                     }
                     break;
+
+                case sf::Event::MouseButtonPressed: {
+                    if (event.mouseButton.button == sf::Mouse::Left) {
+                        float xMouse = static_cast<float>(event.mouseButton.x);
+                        float yMouse = static_cast<float>(event.mouseButton.y);
+                        planets.push_back(new Planet(xMouse, yMouse, 2000));
+                        std::cout << "Planete créer [" << xMouse << ";" << yMouse << "]\n";
+                    } else if (event.mouseButton.button == sf::Mouse::Right) {
+                        if (!planets.empty()) {
+                            delete planets.back();
+                            planets.pop_back();
+                            std::cout << "Planete supprimée\n";
+                        }
+                    }
+                    break;
+                }
+                
+                
                 default:
                     break;
             }
@@ -59,15 +90,29 @@ int main()
         window.clear();
 
         //particle.update_physics(source);
-        for (int i = 0; i < MAXPoint; ++i) {
-            points[i]->update_physics(source);
-            points[i]->render(window);
+        if (planets.size() == 0 ) {
+            for (int i = 0; i < points.size(); ++i) {
+                points[i]->render(window);
+            }
+        } else 
+        for (int y = 0; y < planets.size(); ++y) {
+            for (int i = 0; i < points.size(); ++i) {
+                points[i]->update_physics(*(planets.at(y)));
+                points[i]->render(window);
+            }
+
+            planets[y]->render(window);
         }
-        source.render(window);
         //particle.render(window);
 
         window.display();
     }
+
+    // cleanup
+    for (auto p : points) delete p;
+    points.clear();
+    for (auto pl : planets) delete pl;
+    planets.clear();
 
     return 0;
 }

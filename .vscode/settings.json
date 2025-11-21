@@ -1,0 +1,22 @@
+{
+    "cmake.generator": "Ninja",
+    // C/C++ extension (Microsoft) defaults to match MinGW/g++ and use compile_commands
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\g++.exe",
+    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    // Make sure the language server can see project headers
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "C:/MinGW/include",
+        "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++"
+    ],
+    // Optional: for clangd users, prefer the compile_commands file in build
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build"
+    ],
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "iostream": "cpp"
+    }
+}
