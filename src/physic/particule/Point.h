@@ -15,12 +15,16 @@ private:
     sf::Vector2f _position;
     sf::Vector2f _velocity;
     sf::CircleShape _circle_shape;
+    sf::Vector2f _acceleration;
+    bool _isDead = false;
 
 public:
     Point(sf::Vector2f position, sf::Vector2f velocity, sf::Color color, float radius = 8);
 
     void render(sf::RenderWindow& win);
-    void update_physics(Planet& particules);
+    //void updatePhysics(Planet& particules);
+    void accumulateForce(Planet& planet);
+    void updatePosition(float dt);
 
     const sf::Vector2f &getPosition() const;
 
@@ -34,7 +38,7 @@ public:
 
     void setCircleShape(const sf::CircleShape &circleShape);
 
-
+    bool isDead() const { return this->_isDead;}
 };
 
 
